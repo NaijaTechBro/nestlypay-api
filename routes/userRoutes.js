@@ -12,7 +12,7 @@ const {
     isAuthenticatedUser,
     businessOnly,
     adminOnly,
-} = require("../middleWare/authMiddleware");
+} = require("../middleware/authMiddleware");
 const loginLimiter = require("../middleware/loginLimiter");
 
 
