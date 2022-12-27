@@ -1,6 +1,6 @@
 const mongoose  = require('mongoose')
 
-const Invoice = require('../models/InvoiceModel');
+const Invoice = require('../models/invoiceModel');
     const getInvoicesByUser = async (req, res) => {
     const {searchQuery} = req.query;
 
