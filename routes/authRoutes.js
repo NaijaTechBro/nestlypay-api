@@ -18,7 +18,7 @@ const {
 } = require("../controllers/authController");
 const {
     isAuthenticatedUser,
-} = require("../middleWare/authMiddleware");
+} = require("../middleware/authMiddleware");
 const loginLimiter = require("../middleware/loginLimiter");
 
 router.post("/users/auth/register", registerUser);
