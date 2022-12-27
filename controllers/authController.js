@@ -11,7 +11,7 @@ const { hashToken, generateToken, decrypt, encrypt } = require("../utils");
 const Cryptr = require("cryptr");
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-const cryptr = new Cryptr(SecretKey);
+const cryptr = new Cryptr(process.env.SecretKey);
 
 
 
