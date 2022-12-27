@@ -8,10 +8,10 @@ const sendEmail = require("../utils/sendEmail");
 const { OAuth2Client } = require("google-auth-library");
 const parser = require("ua-parser-js");
 const { hashToken, generateToken, decrypt, encrypt } = require("../utils");
-// const Cryptr = require("cryptr");
+const Cryptr = require("cryptr");
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-// const cryptr = new Cryptr(process.env.SecretKey);
+const cryptr = new Cryptr(process.env.CRYPTR_KEY);
 
 
 
@@ -140,7 +140,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (!allowedDevice) {
     const loginCode = Math.floor(100000 + Math.random() * 900000);
     // Hash token before saving to DB
-    // const encryptedLoginCode = cryptr.encrypt(loginCode.toString());
+    const encryptedLoginCode = cryptr.encrypt(loginCode.toString());
 
     // Delete token if it exists in DB
     let userToken = await Token.findOne({ userId: user._id });
@@ -213,7 +213,7 @@ const sendLoginCode = asyncHandler(async (req, res) => {
 
   // get the login code
   const loginCode = userToken.loginToken;
-  // const decryptedLoginCode = cryptr.decrypt(loginCode);
+  const decryptedLoginCode = cryptr.decrypt(loginCode);
   console.log(loginCode);
 
   const subject = "Login Access Code - Nestlypay";
@@ -271,7 +271,7 @@ const loginWithCode = asyncHandler(async (req, res) => {
     throw new Error("Invalid or Expired Code, please login again");
   }
 
-  // const decryptedLoginCode = cryptr.decrypt(userToken.loginToken);
+  const decryptedLoginCode = cryptr.decrypt(userToken.loginToken);
 
   // Log user in
   if (loginCode !== decryptedLoginCode) {
