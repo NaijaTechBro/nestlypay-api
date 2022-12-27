@@ -1,0 +1,1186 @@
+swagger: '2.0'
+info:
+  description: '"Swagger configuration for application "'
+  version: 1.1.0
+  title: Nestlypay - API
+  contact:
+    name: NestlyPayAPI
+    url: https://nestlypay.app/
+    email: hello@nestlypay.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/license/LICENSE-2.0"
+host: localhost:7890
+basePath: /
+tags:
+  - name: basic-error-controller
+    description: Basic Error Controller
+  - name: auth-controller
+    description: Auth Controller
+  - name: bankinfo-controller
+    description: BankInfo Controller
+  - name: client-controller
+    description: Client Controller
+  - name: contact-controller
+    description: Contact Controller
+  - name: preference-controller
+    description: preference Controller
+  - name: invoice-controller
+    description: Invoice Controller
+  - name: login-controller
+    description: Login Controller
+  - name: user-controller
+    description: User Controller
+  - name: role-controller
+    description: Role Controller
+  - name: business-controller
+    description: Business Controller
+paths:
+  /:
+    get:
+      tags:
+        - home-controller
+      summary: defaultPage
+      operationId: defaultPageUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/NestlyPayInvoice9823:
+    get:
+      tags:
+        - invoice-controller
+      summary: getInvoice
+      operationId: getInvoiceUsingGET
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: invoiceId
+          in: query
+          description: invoiceId
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Invoice'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+          # Addroletouser
+  /api/v1/addroletouser:
+    post:
+      tags:
+        - role-controller
+      summary: addRoleToUser
+      operationId: addRoleToUserUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: rolename
+          in: query
+          description: rolename
+          required: false
+          type: string
+        - name: userName
+          in: query
+          description: userName
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+  /api/v1/all:
+    get:
+      tags:
+        - invoice-controller
+      summary: getAllUsers
+      operationId: getAllUsersUsingGET
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Invoice'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+          # user Controller
+  /api/v1/all/users:
+    get:
+      tags:
+        - user-controller
+      summary: getAllUsers
+      operationId: getAllUsersUsingGET_1
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/deleteClient:
+    delete:
+      tags:
+        - client-controller
+      summary: deleteClient
+      operationId: deleteClintUsingDELETE
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: query
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Client'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/forgotpassword:
+    post:
+      tags:
+        - auth-controller
+      summary: processForgotPasswordForm
+      operationId: processForgotPasswordFormUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/getInvoiceStatus:
+    get:
+      tags:
+        - invoice-controller
+      summary: getInvoiceStatus
+      operationId: getInvoiceStatusUsingGET
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Invoice'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/getallClient:
+    get:
+      tags:
+        - client-controller
+      summary: getAllClient
+      operationId: getAllClientUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Client'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/reset_password:
+    get:
+      tags:
+        - forgot-password-controller
+      summary: showResetPasswordForm
+      operationId: showResetPasswordFormUsingGET
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: token
+          in: query
+          description: token
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - forgot-password-controller
+      summary: processResetPassword
+      operationId: processResetPasswordUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/saveBankInfo:
+    put:
+      tags:
+        - user-controller
+      summary: saveContactInfo
+      operationId: saveContactInfoUsingPUT
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: account_name
+          in: query
+          required: false
+          type: string
+        - name: account_number
+          in: query
+          required: false
+          type: string
+        - name: bank_name
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1//client/create:
+    post:
+      tags:
+        - client-controller
+      summary: CreateClient
+      operationId: CreateClientUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: email
+          in: query
+          description: email
+          type: string
+        - name: name
+          in: query
+          description: name
+          type: string
+        - name: phoneNumber
+          in: query
+          description: phoneNumber
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Client'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  # /api/v1/saveInvoice:
+  #   post:
+  #     tags:
+  #       - invoice-controller
+  #     summary: saveInvoice
+  #     operationId: saveInvoiceUsingPOST
+  #     consumes:
+  #       - multipart/form-data
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: item
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: issue_date
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: bill_from_phoneNumber
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: dueDate
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: client_email
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: logo
+  #         in: formData
+  #         required: false
+  #         type: file
+  #       - name: clint_phoneNumber
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: client_name
+  #         in: formData
+  #         required: false
+  #         type: string
+  #       - name: status
+  #         in: formData
+  #         required: false
+  #         type: boolean
+  #       - in: body
+  #         name: logo
+  #         description: logo
+  #         required: false
+  #         schema:
+  #           type: string
+  #           format: binary
+  #     responses:
+  #       '200':
+  #         description: OK
+  #         schema:
+  #           $ref: '#/definitions/Invoice'
+  #       '201':
+  #         description: Created
+  #       '401':
+  #         description: Unauthorized
+  #       '403':
+  #         description: Forbidden
+  #       '404':
+  #         description: Not Found
+  /api/v1/savecontactinfo:
+    put:
+      tags:
+        - user-controller
+      summary: saveContactInfo
+      operationId: saveContactInfoUsingPUT_1
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: city
+          in: query
+          required: false
+          type: string
+        - name: country
+          in: query
+          required: false
+          type: string
+        - name: home_address
+          in: query
+          required: false
+          type: string
+        - name: postal_code
+          in: query
+          required: false
+          type: string
+        - name: state
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/saveitem:
+    post:
+      tags:
+        - invoice-controller
+      summary: saveItem
+      operationId: saveItemUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: amount
+          in: formData
+          required: false
+          type: string
+        - name: quantity
+          in: formData
+          required: false
+          type: integer
+          format: int64
+        - name: item_name
+          in: formData
+          required: false
+          type: string
+        - name: id
+          in: formData
+          required: false
+          type: integer
+          format: int32
+        - name: item_description
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Item'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/saveprefernce:
+    put:
+      tags:
+        - user-controller
+      summary: savePreference
+      operationId: savePreferenceUsingPUT
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: transfer_recept_to_customer
+          in: query
+          required: false
+          type: boolean
+        - name: transfer_recept_to_me
+          in: query
+          required: false
+          type: boolean
+        - name: transfer_type
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/saverole:
+    post:
+      tags:
+        - role-controller
+      summary: saveAccount
+      operationId: saveAccountUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: id
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: name
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Role'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/saveuser:
+    post:
+      tags:
+        - User-controller
+      summary: saveUser
+      operationId: saveUserUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: lastName
+          in: formData
+          required: false
+          type: string
+        - name: firstName
+          in: formData
+          required: false
+          type: string
+        - name: password
+          in: formData
+          required: false
+          type: string
+        - name: email
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/sendInvite:
+    post:
+      tags:
+        - invoice-controller
+      summary: sendInvite
+      operationId: sendInviteUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: email
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/sendInvoice:
+    post:
+      tags:
+        - invoice-controller
+      summary: sendInvoice
+      operationId: sendInvoiceUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: invoiceId
+          in: formData
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseEntity'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/setStatusToCancelled:
+    put:
+      tags:
+        - invoice-controller
+      summary: setStatusToCancelled
+      operationId: setStatusToCancelledUsingPUT
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: id
+          in: query
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Invoice'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/setStatusToSuccess:
+    put:
+      tags:
+        - invoice-controller
+      summary: setStatusToSuccess
+      operationId: setStatusToSuccessUsingPUT
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: id
+          in: query
+          description: id
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Invoice'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/testmail:
+    post:
+      tags:
+        - invoice-controller
+      summary: testMailing
+      operationId: testMailingUsingPOST
+      consumes:
+        - application/xml
+        - application/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: body
+          name: email
+          description: email
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/token/refresh:
+    get:
+      tags:
+        - user-controller
+      summary: refreshToken
+      operationId: refreshTokenUsingGET
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/updateuser:
+    put:
+      tags:
+        - user-controller
+      summary: updateProfile
+      operationId: updateProfileUsingPUT
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: query
+          required: false
+          type: string
+        - name: firstName
+          in: query
+          required: false
+          type: string
+        - name: lastName
+          in: query
+          required: false
+          type: string
+        - in: body
+          name: logo
+          description: logo
+          required: false
+          schema:
+            type: string
+            format: binary
+        - name: password
+          in: query
+          required: false
+          type: string
+        - name: phoneNumber
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+
+          # auth-controller Post
+  /api/v1/users/auth/loginStatus:
+    get:
+      tags:
+        - auth-controller
+      summary: Loggedstatus
+      operationId: authUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+          # auth-controller Post
+  /api/v1/users/auth/login:
+    post:
+      tags:
+        - auth-controller
+      summary: LoginUser
+      operationId: authUsingPOST
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+
+          # auth-controller Post
+  /api/v1/users/auth/register:
+    post:
+      tags:
+        - auth-controller
+      summary: RegisterUser
+      operationId: authUsingGET
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      parameters:
+        - name: name
+          in: query
+          description: name
+          required: true
+          type: string
+        - name: email
+          in: query
+          description: email
+          required: true
+          type: string
+        - name: password
+          in: query
+          description: password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Auth'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+        # basic-error-controller Get
+  /error:
+    get:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingGET
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+        # basic-error-controller Head
+    head:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingHEAD
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+          # basic-error-controller Post
+    post:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+          # basic-error-controller Put
+    put:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+
+          # basic-error-controller Delete
+    delete:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingDELETE
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+          # basic-error-controller Options
+    options:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingOPTIONS
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+          # basic-error-controller Patch
+    patch:
+      tags:
+        - basic-error-controller
+      summary: error
+      operationId: errorUsingPATCH
+      consumes:
+        - application/json
+      produces:
+        - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+definitions:
+  Client:
+    type: object
+    title: Client
+  Invoice:
+    type: object
+    title: Invoice
+  Item:
+    type: object
+    title: Item
+  Business:
+    type: object
+    title: Business
+  User:
+    type: object
+    title: User
+  ResponseEntity:
+    type: object
+    title: ResponseEntity
+  Role:
+    type: object
+    title: Role
