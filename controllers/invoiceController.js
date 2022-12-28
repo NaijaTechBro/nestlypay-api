@@ -1,6 +1,8 @@
 const mongoose  = require('mongoose')
-
 const Invoice = require('../models/invoiceModel');
+
+
+// Get Invoices by users
     const getInvoicesByUser = async (req, res) => {
     const {searchQuery} = req.query;
 
@@ -12,7 +14,7 @@ const Invoice = require('../models/invoiceModel');
         res.status(404).json({ message: error.message });
     }
 }
-
+    // Get the total number of user
     const getTotalCount = async (req, res) => {
     const {searchQuery} = req.query;
 
@@ -26,6 +28,7 @@ const Invoice = require('../models/invoiceModel');
     }
 }
 
+    // Get Invoices
     const getInvoices = async (req, res) => {
 
     try {
@@ -40,8 +43,7 @@ const Invoice = require('../models/invoiceModel');
     
 }
 
-
-
+    // Create Invoices
     const createInvoice = async (req, res) => {
 
     const invoice = req.body
@@ -68,8 +70,8 @@ const Invoice = require('../models/invoiceModel');
     }
 }
 
-
-  const updateInvoice = async (req, res) => {
+    // Update Invoices
+    const updateInvoice = async (req, res) => {
     const { id: _id } = req.params
     const invoice = req.body
 
@@ -80,6 +82,7 @@ const Invoice = require('../models/invoiceModel');
     res.json(updatedInvoice)
 }
 
+    // Delete Invoices
     const deleteInvoice = async (req, res) => {
     const { id } = req.params
 
@@ -89,17 +92,6 @@ const Invoice = require('../models/invoiceModel');
 
     res.json({message: 'Invoice deleted successfully'})
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

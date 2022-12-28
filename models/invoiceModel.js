@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const InvoiceSchema = mongoose.Schema({
     dueDate: Date,
     currency: String,
-    items: [ { itemName: String, unitPrice: String, quantity: String, discount: String } ],
+    items: [ { 
+        itemName: String, 
+        unitPrice: String, 
+        quantity: String, 
+        discount: String,
+        description: String} ],
     rates: String,
     vat: Number,
     total: Number,
@@ -14,8 +19,17 @@ const InvoiceSchema = mongoose.Schema({
     type: String,
     creator: [String],
     totalAmountReceived: Number,
-    client: { name: String, email: String, phone: String, address: String },
-    paymentRecords: [ {amountPaid: Number, datePaid: Date, paymentMethod: String, note: String, paidBy: String } ],
+    client: { 
+        name: String, 
+        email: String, 
+        phone: String, 
+        address: String },
+    paymentRecords: [ {
+        amountPaid: Number, 
+        datePaid: Date, 
+        paymentMethod: String, 
+        note: String, 
+        paidBy: String } ],
     createdAt: {
         type: Date,
         default: new Date()

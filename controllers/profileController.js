@@ -34,7 +34,7 @@ const router = express.Router();
     phoneNumber,
     businessName,
     contactAddress, 
-    logo,
+    photo,
     website,
     userId,
     } = req.body;
@@ -45,7 +45,7 @@ const router = express.Router();
     phoneNumber,
     businessName,
     contactAddress, 
-    logo,
+    photo,
     website,
     userId,
     createdAt: new Date().toISOString() 
@@ -82,18 +82,18 @@ const router = express.Router();
 
 
     const getProfilesBySearch = async (req, res) => {
-  const { searchQuery } = req.query;
+    const { searchQuery } = req.query;
 
-  try {
-      const name = new RegExp(searchQuery, "i");
-      const email = new RegExp(searchQuery, "i");
+    try {
+        const name = new RegExp(searchQuery, "i");
+        const email = new RegExp(searchQuery, "i");
 
-      const profiles = await Profile.find({ $or: [ { name }, { email } ] });
+        const profiles = await Profile.find({ $or: [ { name }, { email } ] });
 
-      res.json({ data: profiles });
-  } catch (error) {    
-      res.status(404).json({ message: error.message });
-  }
+        res.json({ data: profiles });
+    } catch (error) {    
+        res.status(404).json({ message: error.message });
+    }
 }
 
     const updateProfile = async (req, res) => {
@@ -128,14 +128,3 @@ module.exports = {
     updateProfile,
     deleteProfile,
 }
-
-// // Function call
-// ProfileModel.insertMany([
-//   { name: 'Gourav', age: 20},
-//   { name: 'Kartik', age: 20},
-//   { name: 'Niharika', age: 20}
-// ]).then(function(){
-//   console.log("Data inserted")  // Success
-// }).catch(function(error){
-//   console.log(error)      // Failure
-// });

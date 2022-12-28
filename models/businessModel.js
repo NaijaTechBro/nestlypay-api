@@ -1,9 +1,13 @@
 const mongoose = require ('mongoose');
 
 const BusinessSchema = mongoose.Schema({
-    name: {
+    firstName: {
         type: String,
-        required: [true, "Please Enter your business anme"]
+        required: [true, "Please Enter your firstName"]
+    },
+    lastName: {
+        type: String,
+        required: [true, "Please Enter your lastName"]
     },
     name: {
         type: String,
@@ -11,7 +15,21 @@ const BusinessSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, "Please add your business email"],
+        required: [true, "Please add your email"],
+        unique: true,
+        trim: true,
+        match: [
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            "Please enter a valid email"
+        ]
+    },
+    companyName: {
+        type: String,
+        required: [true, "Please add your Company name"],
+    },
+    companyEmail: {
+        type: String,
+        required: [true, "Please add your Company email"],
         unique: true,
         trim: true,
         match: [
@@ -31,6 +49,9 @@ const BusinessSchema = mongoose.Schema({
         type: String,
     },
     state: {
+        type: String,
+    },
+    postalCode: {
         type: String,
     },
     country: {

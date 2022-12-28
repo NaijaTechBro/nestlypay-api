@@ -3,6 +3,20 @@ const asyncHandler = require("express-async-handler");
 const Business = require("../models/businessModel");
 
 
+    // Create a Business
+    const createBusiness = asyncHandler(async (req, res) => {
+
+        const business = req.body
+    
+        const newBusiness = new Business({...business, createdAt: new Date().toISOString() })
+    
+        try {
+            await newBusiness.save()
+            res.status(201).json(newBusiness)
+        } catch (error) {
+            res.status(409).json(error.message)
+        }
+    });
 
     // Get A getBusiness
     const getBusiness = asyncHandler(async (req, res) => { 
@@ -17,7 +31,7 @@ const Business = require("../models/businessModel");
     }
 });
 
-    // Get All Clients
+    // Get All Businesses
     const getBusinesses = asyncHandler(async (req, res) => {
     const { page } = req.query;
     
@@ -34,21 +48,6 @@ const Business = require("../models/businessModel");
     }
 });
 
-    // Create a Business
-    const createBusiness = asyncHandler(async (req, res) => {
-
-    const business = req.body
-
-    const newBusiness = new Business({...business, createdAt: new Date().toISOString() })
-
-    try {
-        await newBusiness.save()
-        res.status(201).json(newBusiness)
-    } catch (error) {
-        res.status(409).json(error.message)
-    }
-});
-
     // Update Business
     const updateBusiness = asyncHandler(async (req, res) => {
     const { id: _id } = req.params
@@ -62,7 +61,7 @@ const Business = require("../models/businessModel");
 });
 
 
-    // Delete Client
+    // Delete Business
     const deleteBusiness = asyncHandler(async (req, res) => {
     const { id } = req.params
 
@@ -74,7 +73,7 @@ const Business = require("../models/businessModel");
 });
 
 
-    // Get a Client by a User
+    // Get a business by a User
     const getBusinessesByUser = asyncHandler(async (req, res) => {
     const { searchQuery } = req.query;
 
@@ -87,23 +86,6 @@ const Business = require("../models/businessModel");
     }
 });
 
-
-
-// export const getClients = async (req, res) => {
-//     const userId = req.body
-
-//     try {
-//         const allClients = await Client.find({userId: userId}).sort({_id:-1}) 
-//         //find({}).sort({_id:-1}) to sort according to date of creation
-
-//         res.status(200).json(allClients)
-
-//     } catch (error) {
-//         res.status(409).json(error.message)
-        
-//     }
-    
-// }
 
 
 module.exports = {
