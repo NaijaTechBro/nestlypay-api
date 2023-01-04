@@ -1,4 +1,4 @@
-const moment = require('moment');
+const moment = require('moment')
 
 module.exports = function (
     { 
@@ -148,11 +148,11 @@ hr {
         </div>
         
       <div class"footer">
-          <a href="https://accountill.com">
-          <img class="footer-logo" src="https://i.postimg.cc/hGZKzdkS/logo.png" alt="arc-invoice"/>
+          <a href="https://nestlypay.com">
+          <img class="footer-logo" src="" alt="arc-invoice"/>
         </a>
       </div>
-    <p style="text-align: center">Make beautiful invoice for free at accountill.com</p>
+    <p style="text-align: center">Make beautiful invoice for free at nestlypay.com</p>
     </div>
     </body>
 </html>`

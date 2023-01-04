@@ -38,9 +38,9 @@ const errorHandlerr = require("./middleware/errorMiddleware");
 
 // Invoice Helper Import
 
-const pdfTemplate = require("./documents/email");
+const pdfTemplate = require("./documents/index");
 // const invoiceTemplate = require("./documents/invoice");
-const emailTemplate = require("./documents/index");
+const emailTemplate = require("./documents/email");
 
 // Connecting to Database Environments
 
@@ -99,7 +99,7 @@ app.post('/send-pdf', (req, res) => {
         const send_to = email;
         const sent_from = process.env.EMAIL_USER;
         const reply_to = "noreply@nestlypay.com";
-        const html = emailTemplate(req.body);
+        const template = "emailTemplate";
         const  attachments = [{
             filename: 'invoice.pdf',
             path: `${__dirname}/invoice.pdf`
@@ -112,7 +112,7 @@ app.post('/send-pdf', (req, res) => {
     send_to,
     sent_from,
     reply_to,
-    html,
+    template,
     attachments,
     );
     res

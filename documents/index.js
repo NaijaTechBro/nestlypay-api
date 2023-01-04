@@ -1,4 +1,7 @@
 const moment = require ('moment');
+// const User = require("../models/userModel");
+// const Invoice = require("../models/invoiceModel");
+// const Business = require("../models")
 
 module.exports = function (
   { name,
@@ -122,7 +125,7 @@ img {
 
       <div>
           <p class="title">From:</p>
-          <h4 style="font-size: 9px; line-height: 5px">${company.businessName ? company.businessName : company.name}</h4>
+          <h4 style="font-size: 9px; line-height: 5px">${company.name}</h4>
           <p style="font-size: 9px; line-height: 5px">${company.email}</p>
           <p style="font-size: 9px; line-height: 5px">${company.phoneNumber}</p>
           <p style="font-size: 9px; line-height: 5px">${company.contactAddress}</p>

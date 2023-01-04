@@ -1,6 +1,6 @@
-const moment = require ('moment');
+const moment = require('moment');
 
-module.exports = function (
+module.export = function (
    { name,
       address,
       phone,

@@ -3,8 +3,6 @@ const User = require("../models/userModel");
 const Token = require("../models/tokenModel");
 
 
-
-
 // Get User Data
 const getUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
