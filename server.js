@@ -20,6 +20,7 @@ const { dirname } = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
+
 const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/dbConn');
 const mongoose = require('mongoose');
@@ -192,7 +193,7 @@ app.use(errorHandlerr)
 mongoose.set("strictQuery", true);
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}...`))
 })
 
 mongoose.connection.on('error', err => {
