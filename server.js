@@ -1,11 +1,12 @@
 require('dotenv').config();
 
+const express = require('express');
+
 // Security
 const helmet = require('helmet');
 const cors = require('cors');
+const whitelist = require('./config/whiteList')
 const xss = require('xss-clean');
-
-const express = require('express');
 
 // Swagger UI
 const swaggerUI = require("swagger-ui-express");
@@ -58,12 +59,12 @@ console.log(process.env.NODE_ENV)
 
 connectDB()
 
-
 // Middlewares
 
 app.use(logger)
 
-app.use(cors(corsOptions))
+// Cross Origin Resource Sharing
+app.use(cors(whitelist))
 
 app.use(express.json({ limit: "30mb", extended: true}))
 app.use(helmet());

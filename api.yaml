@@ -1,15 +1,14 @@
 openapi: 3.0.0
 info:
   title: Nestlypay API
+  termsOfService: /terms-of-use
   contact:
     name: Nestlypay Developer Team
     email: hello@nestlypay.com
   version: '1.0'
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
-- url: https://nestlipay-data.onrender.com
-  variables: {}
-- url: http://example.com
+- url: http://localhost:7890/api/v1
   variables: {}
 paths:
   /users/sendAutomatedEmail:
@@ -45,10 +44,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/sendLoginCode:
     post:
       tags:
@@ -61,10 +56,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/loginWithCode:
     post:
       tags:
@@ -77,10 +68,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /:
     get:
       tags:
@@ -93,10 +80,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: https://nestlipay-data.onrender.com
-        variables: {}
-    parameters: []
   /users/auth/login:
     post:
       tags:
@@ -125,10 +108,6 @@ paths:
           headers: {}
       deprecated: false
       security: []
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /logout:
     get:
       tags:
@@ -141,10 +120,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/auth/register:
     post:
       tags:
@@ -175,10 +150,6 @@ paths:
           headers: {}
       deprecated: false
       security: []
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /auth/sendVerificationEmail:
     post:
       tags:
@@ -204,10 +175,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /auth/VerifyUser:
     patch:
       tags:
@@ -234,10 +201,6 @@ paths:
           headers: {}
       deprecated: false
       security: []
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/auth/loginStatus:
     get:
       tags:
@@ -260,10 +223,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/resetPassword:
     patch:
       tags:
@@ -290,10 +249,6 @@ paths:
           headers: {}
       deprecated: false
       security: []
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/forgotPassword:
     post:
       tags:
@@ -320,10 +275,6 @@ paths:
           headers: {}
       deprecated: false
       security: []
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/updateUser:
     post:
       tags:
@@ -349,10 +300,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /users/changePassword:
     patch:
       tags:
@@ -380,10 +327,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /fetch-pdf:
     get:
       tags:
@@ -396,10 +339,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /send-pdf:
     post:
       tags:
@@ -412,10 +351,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /create-pdf:
     post:
       tags:
@@ -491,10 +426,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/create:
     post:
       tags:
@@ -576,10 +507,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/getInvoice:
     get:
       tags:
@@ -592,10 +519,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/getInvoices:
     get:
       tags:
@@ -608,10 +531,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/getInvoicesByUser:
     get:
       tags:
@@ -624,10 +543,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/gettotalCount:
     get:
       tags:
@@ -640,10 +555,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/update:
     put:
       tags:
@@ -725,10 +636,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /invoice/delete:
     delete:
       tags:
@@ -810,10 +717,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /client/create:
     post:
       tags:
@@ -826,10 +729,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /client/update:
     patch:
       tags:
@@ -842,10 +741,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /client/delete:
     delete:
       tags:
@@ -858,10 +753,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /client/getClient:
     get:
       tags:
@@ -874,10 +765,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /client/gettotalClients:
     get:
       tags:
@@ -890,10 +777,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /client/getClientByUser:
     get:
       tags:
@@ -906,10 +789,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /business/create:
     post:
       tags:
@@ -942,10 +821,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /business/update:
     patch:
       tags:
@@ -958,10 +833,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://example.com
-        variables: {}
-    parameters: []
   /business/delete:
     delete:
       tags:
@@ -975,7 +846,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /business/getBusiness:
@@ -991,7 +862,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /business/gettotalBusinesses:
@@ -1007,7 +878,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /business/getBusinessByUser:
@@ -1023,7 +894,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /profile/create:
@@ -1080,7 +951,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /profile/getprofiles:
@@ -1096,7 +967,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /profile/getprofile:
@@ -1112,7 +983,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /profile/getprofileByUser:
@@ -1128,7 +999,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /profile/update:
@@ -1185,7 +1056,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /profile/delete:
@@ -1242,7 +1113,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
   /contacts:
@@ -1278,7 +1149,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: http://example.com
+      - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
 components:
