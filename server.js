@@ -1,8 +1,17 @@
 require('dotenv').config();
+
+// Security
+const helmet = require('helmet');
+const cors = require('cors');
+const xss = require('xss-clean');
+
 const express = require('express');
+
+// Swagger UI
 const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
 const swaggerJsDocs = YAML.load("./api.yaml");
+
 const nodemailer = require("nodemailer")
 const app = express();
 const path = require('path');
@@ -19,7 +28,7 @@ const { dirname } = require('path');
 
 const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
-const cors = require('cors');
+
 
 const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/dbConn');
@@ -57,6 +66,8 @@ app.use(logger)
 app.use(cors(corsOptions))
 
 app.use(express.json({ limit: "30mb", extended: true}))
+app.use(helmet());
+app.use(xss());
 app.use(cookieParser())
 app.use(express.urlencoded({ limit: "30mb", extended: false}))
 app.use(bodyParser.json())

@@ -1,1186 +1,1879 @@
-swagger: '2.0'
+openapi: 3.1.0
 info:
-  description: '"Swagger configuration for application "'
-  version: 1.1.0
-  title: Nestlypay - API
+  title: Nestlypay API
   contact:
-    name: NestlyPayAPI
-    url: https://nestlypay.app/
+    name: Nestlypay Developer Team
     email: hello@nestlypay.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/license/LICENSE-2.0"
-host: localhost:7890
-basePath: /
-tags:
-  - name: basic-error-controller
-    description: Basic Error Controller
-  - name: auth-controller
-    description: Auth Controller
-  - name: bankinfo-controller
-    description: BankInfo Controller
-  - name: client-controller
-    description: Client Controller
-  - name: contact-controller
-    description: Contact Controller
-  - name: preference-controller
-    description: preference Controller
-  - name: invoice-controller
-    description: Invoice Controller
-  - name: login-controller
-    description: Login Controller
-  - name: user-controller
-    description: User Controller
-  - name: role-controller
-    description: Role Controller
-  - name: business-controller
-    description: Business Controller
+  version: '1.0'
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+servers:
+- url: https://nestlipay-data.onrender.com/api/v1
+  variables: {}
+- url: http://example.com
+  variables: {}
 paths:
+  /users/sendAutomatedEmail:
+    post:
+      tags:
+      - Email
+      summary: sendAutomatedEmail
+      operationId: sendAutomatedEmail
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/sendAutomatedEmailRequest'
+              - examples:
+                - subject: hello
+                  send_to: bakisodiq@gmail.com
+                  reply_to: noreply@nestlypay.com
+                  template: testEmail
+                  url: testemail
+              contentMediaType: application/json
+            example:
+              subject: hello
+              send_to: bakisodiq@gmail.com
+              reply_to: noreply@nestlypay.com
+              template: testEmail
+              url: testemail
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/sendLoginCode:
+    post:
+      tags:
+      - Email
+      summary: sendLoginCode
+      operationId: sendLoginCode
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/loginWithCode:
+    post:
+      tags:
+      - Email
+      summary: loginWithCode
+      operationId: loginWithCode
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
   /:
     get:
       tags:
-        - home-controller
-      summary: defaultPage
-      operationId: defaultPageUsingGET
-      produces:
-        - '*/*'
+      - Authentication
+      summary: Home Page
+      operationId: HomePage
+      parameters: []
       responses:
         '200':
-          description: OK
-          schema:
-            type: string
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/NestlyPayInvoice9823:
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: https://nestlipay-data.onrender.com/api/v1
+        variables: {}
+    parameters: []
+  /users/auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserRequest'
+              - examples:
+                - email: ibitoyecomfort209@gmail.com
+                  password: Atom@124
+              contentMediaType: application/json
+            example:
+              email: ibitoyecomfort209@gmail.com
+              password: Atom@124
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /logout:
     get:
       tags:
-        - invoice-controller
-      summary: getInvoice
-      operationId: getInvoiceUsingGET
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: invoiceId
-          in: query
-          description: invoiceId
-          required: false
-          type: string
+      - Authentication
+      summary: LogOut
+      operationId: LogOut
+      parameters: []
       responses:
         '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Invoice'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-          # Addroletouser
-  /api/v1/addroletouser:
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/auth/register:
     post:
       tags:
-        - role-controller
-      summary: addRoleToUser
-      operationId: addRoleToUserUsingPOST
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      parameters:
-        - name: rolename
-          in: query
-          description: rolename
-          required: false
-          type: string
-        - name: userName
-          in: query
-          description: userName
-          required: false
-          type: string
+      - Authentication
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - examples:
+                - name: kofo
+                  email: ibitoyecomfort209@gmail.com
+                  password: Atom@124
+              contentMediaType: application/json
+            example:
+              name: kofo
+              email: ibitoyecomfort209@gmail.com
+              password: Atom@124
+        required: true
       responses:
         '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-  /api/v1/all:
-    get:
-      tags:
-        - invoice-controller
-      summary: getAllUsers
-      operationId: getAllUsersUsingGET
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Invoice'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-          # user Controller
-  /api/v1/all/users:
-    get:
-      tags:
-        - user-controller
-      summary: getAllUsers
-      operationId: getAllUsersUsingGET_1
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/User'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/deleteClient:
-    delete:
-      tags:
-        - client-controller
-      summary: deleteClient
-      operationId: deleteClintUsingDELETE
-      produces:
-        - '*/*'
-      parameters:
-        - name: id
-          in: query
-          description: id
-          required: true
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Client'
-        '204':
-          description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-  /api/v1/forgotpassword:
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /auth/sendVerificationEmail:
     post:
       tags:
-        - auth-controller
-      summary: processForgotPasswordForm
-      operationId: processForgotPasswordFormUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
+      - Authentication
+      summary: send Verification Email
+      operationId: sendVerificationEmail
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/sendVerificationEmailRequest'
+              - examples:
+                - email: ibitoyecomfort209@gmail.com
+              contentMediaType: application/json
+            example:
+              email: ibitoyecomfort209@gmail.com
+        required: true
       responses:
         '200':
-          description: OK
-          schema:
-            type: string
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/getInvoiceStatus:
-    get:
-      tags:
-        - invoice-controller
-      summary: getInvoiceStatus
-      operationId: getInvoiceStatusUsingGET
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Invoice'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/getallClient:
-    get:
-      tags:
-        - client-controller
-      summary: getAllClient
-      operationId: getAllClientUsingGET
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Client'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/reset_password:
-    get:
-      tags:
-        - forgot-password-controller
-      summary: showResetPasswordForm
-      operationId: showResetPasswordFormUsingGET
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: token
-          in: query
-          description: token
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-    post:
-      tags:
-        - forgot-password-controller
-      summary: processResetPassword
-      operationId: processResetPasswordUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/saveBankInfo:
-    put:
-      tags:
-        - user-controller
-      summary: saveContactInfo
-      operationId: saveContactInfoUsingPUT
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: account_name
-          in: query
-          required: false
-          type: string
-        - name: account_number
-          in: query
-          required: false
-          type: string
-        - name: bank_name
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1//client/create:
-    post:
-      tags:
-        - client-controller
-      summary: CreateClient
-      operationId: CreateClientUsingPOST
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      parameters:
-        - name: email
-          in: query
-          description: email
-          type: string
-        - name: name
-          in: query
-          description: name
-          type: string
-        - name: phoneNumber
-          in: query
-          description: phoneNumber
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Client'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  # /api/v1/saveInvoice:
-  #   post:
-  #     tags:
-  #       - invoice-controller
-  #     summary: saveInvoice
-  #     operationId: saveInvoiceUsingPOST
-  #     consumes:
-  #       - multipart/form-data
-  #     produces:
-  #       - application/json
-  #     parameters:
-  #       - name: item
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: issue_date
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: bill_from_phoneNumber
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: dueDate
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: client_email
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: logo
-  #         in: formData
-  #         required: false
-  #         type: file
-  #       - name: clint_phoneNumber
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: client_name
-  #         in: formData
-  #         required: false
-  #         type: string
-  #       - name: status
-  #         in: formData
-  #         required: false
-  #         type: boolean
-  #       - in: body
-  #         name: logo
-  #         description: logo
-  #         required: false
-  #         schema:
-  #           type: string
-  #           format: binary
-  #     responses:
-  #       '200':
-  #         description: OK
-  #         schema:
-  #           $ref: '#/definitions/Invoice'
-  #       '201':
-  #         description: Created
-  #       '401':
-  #         description: Unauthorized
-  #       '403':
-  #         description: Forbidden
-  #       '404':
-  #         description: Not Found
-  /api/v1/savecontactinfo:
-    put:
-      tags:
-        - user-controller
-      summary: saveContactInfo
-      operationId: saveContactInfoUsingPUT_1
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: city
-          in: query
-          required: false
-          type: string
-        - name: country
-          in: query
-          required: false
-          type: string
-        - name: home_address
-          in: query
-          required: false
-          type: string
-        - name: postal_code
-          in: query
-          required: false
-          type: string
-        - name: state
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/saveitem:
-    post:
-      tags:
-        - invoice-controller
-      summary: saveItem
-      operationId: saveItemUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: amount
-          in: formData
-          required: false
-          type: string
-        - name: quantity
-          in: formData
-          required: false
-          type: integer
-          format: int64
-        - name: item_name
-          in: formData
-          required: false
-          type: string
-        - name: id
-          in: formData
-          required: false
-          type: integer
-          format: int32
-        - name: item_description
-          in: formData
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Item'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/saveprefernce:
-    put:
-      tags:
-        - user-controller
-      summary: savePreference
-      operationId: savePreferenceUsingPUT
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: transfer_recept_to_customer
-          in: query
-          required: false
-          type: boolean
-        - name: transfer_recept_to_me
-          in: query
-          required: false
-          type: boolean
-        - name: transfer_type
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/saverole:
-    post:
-      tags:
-        - role-controller
-      summary: saveAccount
-      operationId: saveAccountUsingPOST
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      parameters:
-        - name: id
-          in: query
-          required: false
-          type: integer
-          format: int32
-        - name: name
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Role'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/saveuser:
-    post:
-      tags:
-        - User-controller
-      summary: saveUser
-      operationId: saveUserUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: lastName
-          in: formData
-          required: false
-          type: string
-        - name: firstName
-          in: formData
-          required: false
-          type: string
-        - name: password
-          in: formData
-          required: false
-          type: string
-        - name: email
-          in: formData
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/sendInvite:
-    post:
-      tags:
-        - invoice-controller
-      summary: sendInvite
-      operationId: sendInviteUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: email
-          in: formData
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/sendInvoice:
-    post:
-      tags:
-        - invoice-controller
-      summary: sendInvoice
-      operationId: sendInvoiceUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: invoiceId
-          in: formData
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/ResponseEntity'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/setStatusToCancelled:
-    put:
-      tags:
-        - invoice-controller
-      summary: setStatusToCancelled
-      operationId: setStatusToCancelledUsingPUT
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: id
-          in: query
-          description: id
-          required: true
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Invoice'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/setStatusToSuccess:
-    put:
-      tags:
-        - invoice-controller
-      summary: setStatusToSuccess
-      operationId: setStatusToSuccessUsingPUT
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - name: id
-          in: query
-          description: id
-          required: true
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Invoice'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/testmail:
-    post:
-      tags:
-        - invoice-controller
-      summary: testMailing
-      operationId: testMailingUsingPOST
-      consumes:
-        - application/xml
-        - application/json
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      parameters:
-        - in: body
-          name: email
-          description: email
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/token/refresh:
-    get:
-      tags:
-        - user-controller
-      summary: refreshToken
-      operationId: refreshTokenUsingGET
-      consumes:
-        - application/x-www-form-urlencoded
-      produces:
-        - application/json
-        - application/xml
-      responses:
-        '200':
-          description: OK
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-  /api/v1/updateuser:
-    put:
-      tags:
-        - user-controller
-      summary: updateProfile
-      operationId: updateProfileUsingPUT
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: email
-          in: query
-          required: false
-          type: string
-        - name: firstName
-          in: query
-          required: false
-          type: string
-        - name: lastName
-          in: query
-          required: false
-          type: string
-        - in: body
-          name: logo
-          description: logo
-          required: false
-          schema:
-            type: string
-            format: binary
-        - name: password
-          in: query
-          required: false
-          type: string
-        - name: phoneNumber
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/User'
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-
-          # auth-controller Post
-  /api/v1/users/auth/loginStatus:
-    get:
-      tags:
-        - auth-controller
-      summary: Loggedstatus
-      operationId: authUsingGET
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-          # auth-controller Post
-  /api/v1/users/auth/login:
-    post:
-      tags:
-        - auth-controller
-      summary: LoginUser
-      operationId: authUsingPOST
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-
-          # auth-controller Post
-  /api/v1/users/auth/register:
-    post:
-      tags:
-        - auth-controller
-      summary: RegisterUser
-      operationId: authUsingGET
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      parameters:
-        - name: name
-          in: query
-          description: name
-          required: true
-          type: string
-        - name: email
-          in: query
-          description: email
-          required: true
-          type: string
-        - name: password
-          in: query
-          description: password
-          required: true
-          type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/Auth'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-        # basic-error-controller Get
-  /error:
-    get:
-      tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingGET
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-        # basic-error-controller Head
-    head:
-      tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingHEAD
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '204':
-          description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-
-          # basic-error-controller Post
-    post:
-      tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingPOST
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-          # basic-error-controller Put
-    put:
-      tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingPUT
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '201':
-          description: Created
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Not Found
-
-          # basic-error-controller Delete
-    delete:
-      tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingDELETE
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '204':
-          description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-
-          # basic-error-controller Options
-    options:
-      tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingOPTIONS
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
-              type: object
-        '204':
-          description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-
-          # basic-error-controller Patch
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /auth/VerifyUser:
     patch:
       tags:
-        - basic-error-controller
-      summary: error
-      operationId: errorUsingPATCH
-      consumes:
-        - application/json
-      produces:
-        - '*/*'
+      - Authentication
+      summary: Verify Token
+      operationId: VerifyToken
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/VerifyTokenRequest'
+              - examples:
+                - email: ibitoyecomfort209@gmail.com
+              contentMediaType: application/json
+            example:
+              email: ibitoyecomfort209@gmail.com
+        required: true
       responses:
         '200':
-          description: OK
-          schema:
-            type: object
-            additionalProperties:
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/auth/loginStatus:
+    get:
+      tags:
+      - Authentication
+      summary: LoggedIn Status
+      operationId: LoggedInStatus
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          const: application/x-www-form-urlencoded
+          type: string
+          examples:
+          - application/x-www-form-urlencoded
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/resetPassword:
+    patch:
+      tags:
+      - Authentication
+      summary: Reset Password
+      operationId: ResetPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ResetPasswordRequest'
+              - examples:
+                - password: Atom@124
+              contentMediaType: application/json
+            example:
+              password: Atom@124
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/forgotPassword:
+    post:
+      tags:
+      - Authentication
+      summary: Forgot Password
+      operationId: ForgotPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ForgotPasswordRequest'
+              - examples:
+                - email: bakisodiq@gmail.com
+              contentMediaType: application/json
+            example:
+              email: bakisodiq@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/updateUser:
+    post:
+      tags:
+      - Authentication
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUserRequest'
+              - examples:
+                - name: kofo1
+              contentMediaType: application/json
+            example:
+              name: kofo1
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /users/changePassword:
+    patch:
+      tags:
+      - Authentication
+      summary: Change Password
+      operationId: ChangePassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ChangePasswordRequest'
+              - examples:
+                - oldPassword: Atom@124
+                  Password: Atom@1245
+              contentMediaType: application/json
+            example:
+              oldPassword: Atom@124
+              Password: Atom@1245
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /fetch-pdf:
+    get:
+      tags:
+      - Create PDF
+      summary: Fetch PDF
+      operationId: FetchPDF
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /send-pdf:
+    post:
+      tags:
+      - Create PDF
+      summary: Send PDF
+      operationId: SendPDF
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /create-pdf:
+    post:
+      tags:
+      - Create PDF
+      summary: Create PDF
+      operationId: CreatePDF
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreatePDFRequest'
+              - examples:
+                - name: baki
+                  address: hello
+                  phone: '+2348166321899'
+                  email: bakisodiq@gmail.com
+                  dueDate: 2022-12-23T21:17:11.760Z
+                  date: 2022-12-23T21:17:11.760Z
+                  id: '0001'
+                  note: Please Make Payment to my account details below
+                  subTotal: '124.6'
+                  total: '100.5'
+                  type: Invoice
+                  vat: '3'
+                  items:
+                  - itemName: Gold
+                    unitPrice: '23.3'
+                    quantity: '2'
+                    discount: '0.5'
+                  status: unpaid
+                  totalAmountReceived: '455.6'
+                  balanceDue: '23.9'
+                  company: GIG
+                  businessDetails:
+                  - businessName: baki
+                    address: hello
+                    phone: '+2348166321899'
+                    email: bakisodiq@gmail.com
+              contentMediaType: application/json
+            example:
+              name: baki
+              address: hello
+              phone: '+2348166321899'
+              email: bakisodiq@gmail.com
+              dueDate: 2022-12-23T21:17:11.760Z
+              date: 2022-12-23T21:17:11.760Z
+              id: '0001'
+              note: Please Make Payment to my account details below
+              subTotal: '124.6'
+              total: '100.5'
+              type: Invoice
+              vat: '3'
+              items:
+              - itemName: Gold
+                unitPrice: '23.3'
+                quantity: '2'
+                discount: '0.5'
+              status: unpaid
+              totalAmountReceived: '455.6'
+              balanceDue: '23.9'
+              company: GIG
+              businessDetails:
+              - businessName: baki
+                address: hello
+                phone: '+2348166321899'
+                email: bakisodiq@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/create:
+    post:
+      tags:
+      - Invoice
+      summary: Create Invoice
+      operationId: CreateInvoice
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateInvoiceRequest'
+              - examples:
+                - dueDate: 2022-12-23T21:17:11.760Z
+                  currency: USD
+                  items:
+                  - itemName: Silver
+                    unitPrice: '23.3'
+                    quantity: '2'
+                    discount: '0.5'
+                  rates: '0.01'
+                  vat: '3'
+                  total: '100.5'
+                  subTotal: '124.6'
+                  notes: Hello
+                  status: unpaid
+                  invoiceNumber: '1236'
+                  type: fff
+                  creator:
+                  - String
+                  totalAmountReceived: '455.6'
+                  client:
+                    name: baki
+                    email: bakisodiq@gmail.com
+                    phone: '3344'
+                    address: hello
+                  paymentRecords:
+                  - amountPaid: '445'
+                    datePaid: 2022-12-23T21:17:11.760Z
+                    paymentMethod: transfer
+                    note: ffff
+                    paidBy: rrtrt
+              contentMediaType: application/json
+            example:
+              dueDate: 2022-12-23T21:17:11.760Z
+              currency: USD
+              items:
+              - itemName: Silver
+                unitPrice: '23.3'
+                quantity: '2'
+                discount: '0.5'
+              rates: '0.01'
+              vat: '3'
+              total: '100.5'
+              subTotal: '124.6'
+              notes: Hello
+              status: unpaid
+              invoiceNumber: '1236'
+              type: fff
+              creator:
+              - String
+              totalAmountReceived: '455.6'
+              client:
+                name: baki
+                email: bakisodiq@gmail.com
+                phone: '3344'
+                address: hello
+              paymentRecords:
+              - amountPaid: '445'
+                datePaid: 2022-12-23T21:17:11.760Z
+                paymentMethod: transfer
+                note: ffff
+                paidBy: rrtrt
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/getInvoice:
+    get:
+      tags:
+      - Invoice
+      summary: Get Invoice
+      operationId: GetInvoice
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/getInvoices:
+    get:
+      tags:
+      - Invoice
+      summary: Get Invoices
+      operationId: GetInvoices
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/getInvoicesByUser:
+    get:
+      tags:
+      - Invoice
+      summary: Get Invoice By User
+      operationId: GetInvoiceByUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/gettotalCount:
+    get:
+      tags:
+      - Invoice
+      summary: Get Total Count
+      operationId: GetTotalCount
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/update:
+    put:
+      tags:
+      - Invoice
+      summary: Update Invoice
+      operationId: UpdateInvoice
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateInvoiceRequest'
+              - examples:
+                - dueDate: 2022-12-23T21:17:11.760Z
+                  currency: USD
+                  items:
+                  - itemName: Silver
+                    unitPrice: '23.3'
+                    quantity: '2'
+                    discount: '0.5'
+                  rates: '0.01'
+                  vat: '3'
+                  total: '100.5'
+                  subTotal: '124.6'
+                  notes: Hello
+                  status: unpaid
+                  invoiceNumber: '1236'
+                  type: fff
+                  creator:
+                  - String
+                  totalAmountReceived: '455.6'
+                  client:
+                    name: baki
+                    email: bakisodiq@gmail.com
+                    phone: '3344'
+                    address: hello
+                  paymentRecords:
+                  - amountPaid: '445'
+                    datePaid: 2022-12-23T21:17:11.760Z
+                    paymentMethod: transfer
+                    note: ffff
+                    paidBy: rrtrt
+              contentMediaType: application/json
+            example:
+              dueDate: 2022-12-23T21:17:11.760Z
+              currency: USD
+              items:
+              - itemName: Silver
+                unitPrice: '23.3'
+                quantity: '2'
+                discount: '0.5'
+              rates: '0.01'
+              vat: '3'
+              total: '100.5'
+              subTotal: '124.6'
+              notes: Hello
+              status: unpaid
+              invoiceNumber: '1236'
+              type: fff
+              creator:
+              - String
+              totalAmountReceived: '455.6'
+              client:
+                name: baki
+                email: bakisodiq@gmail.com
+                phone: '3344'
+                address: hello
+              paymentRecords:
+              - amountPaid: '445'
+                datePaid: 2022-12-23T21:17:11.760Z
+                paymentMethod: transfer
+                note: ffff
+                paidBy: rrtrt
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /invoice/delete:
+    delete:
+      tags:
+      - Invoice
+      summary: Delete Invoice
+      operationId: DeleteInvoice
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/DeleteInvoiceRequest'
+              - examples:
+                - dueDate: 2022-12-23T21:17:11.760Z
+                  currency: USD
+                  items:
+                  - itemName: Silver
+                    unitPrice: '23.3'
+                    quantity: '2'
+                    discount: '0.5'
+                  rates: '0.01'
+                  vat: '3'
+                  total: '100.5'
+                  subTotal: '124.6'
+                  notes: Hello
+                  status: unpaid
+                  invoiceNumber: '1236'
+                  type: fff
+                  creator:
+                  - String
+                  totalAmountReceived: '455.6'
+                  client:
+                    name: baki
+                    email: bakisodiq@gmail.com
+                    phone: '3344'
+                    address: hello
+                  paymentRecords:
+                  - amountPaid: '445'
+                    datePaid: 2022-12-23T21:17:11.760Z
+                    paymentMethod: transfer
+                    note: ffff
+                    paidBy: rrtrt
+              contentMediaType: application/json
+            example:
+              dueDate: 2022-12-23T21:17:11.760Z
+              currency: USD
+              items:
+              - itemName: Silver
+                unitPrice: '23.3'
+                quantity: '2'
+                discount: '0.5'
+              rates: '0.01'
+              vat: '3'
+              total: '100.5'
+              subTotal: '124.6'
+              notes: Hello
+              status: unpaid
+              invoiceNumber: '1236'
+              type: fff
+              creator:
+              - String
+              totalAmountReceived: '455.6'
+              client:
+                name: baki
+                email: bakisodiq@gmail.com
+                phone: '3344'
+                address: hello
+              paymentRecords:
+              - amountPaid: '445'
+                datePaid: 2022-12-23T21:17:11.760Z
+                paymentMethod: transfer
+                note: ffff
+                paidBy: rrtrt
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /client/create:
+    post:
+      tags:
+      - Client
+      summary: Create Client
+      operationId: CreateClient
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /client/update:
+    patch:
+      tags:
+      - Client
+      summary: Update Client
+      operationId: UpdateClient
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /client/delete:
+    delete:
+      tags:
+      - Client
+      summary: Delete Client
+      operationId: DeleteClient
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /client/getClient:
+    get:
+      tags:
+      - Client
+      summary: Get Client
+      operationId: GetClient
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /client/gettotalClients:
+    get:
+      tags:
+      - Client
+      summary: Get All Client
+      operationId: GetAllClient
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /client/getClientByUser:
+    get:
+      tags:
+      - Client
+      summary: Get Client By User
+      operationId: GetClientByUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /business/create:
+    post:
+      tags:
+      - Business
+      summary: Create Business
+      operationId: CreateBusiness
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - address1
+              - email
               type: object
-        '204':
-          description: No Content
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-
-definitions:
-  Client:
-    type: object
-    title: Client
-  Invoice:
-    type: object
-    title: Invoice
-  Item:
-    type: object
-    title: Item
-  Business:
-    type: object
-    title: Business
-  User:
-    type: object
-    title: User
-  ResponseEntity:
-    type: object
-    title: ResponseEntity
-  Role:
-    type: object
-    title: Role
+              properties:
+                address1:
+                  type: string
+                  examples:
+                  - ggg
+                email:
+                  type: string
+                  examples:
+                  - nestlypay@gmail.com
+              contentMediaType: application/x-www-form-urlencoded
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /business/update:
+    patch:
+      tags:
+      - Business
+      summary: Update Business
+      operationId: UpdateBusiness
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /business/delete:
+    delete:
+      tags:
+      - Business
+      summary: Delete Business
+      operationId: DeleteBusiness
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /business/getBusiness:
+    get:
+      tags:
+      - Business
+      summary: Get Business
+      operationId: GetBusiness
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /business/gettotalBusinesses:
+    get:
+      tags:
+      - Business
+      summary: Get All Business
+      operationId: GetAllBusiness
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /business/getBusinessByUser:
+    get:
+      tags:
+      - Business
+      summary: Get Business By User
+      operationId: GetBusinessByUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /profile/create:
+    post:
+      tags:
+      - Profile
+      summary: Create Profile
+      operationId: CreateProfile
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - name
+              - email
+              - phoneNumber
+              - businessName
+              - contactAddress
+              - logo
+              type: object
+              properties:
+                name:
+                  type: string
+                  examples:
+                  - baki
+                email:
+                  type: string
+                  examples:
+                  - bakisodiq@gmail.com
+                phoneNumber:
+                  type: integer
+                  contentEncoding: int32
+                  examples:
+                  - 8888
+                businessName:
+                  type: string
+                  examples:
+                  - ggg
+                contactAddress:
+                  type: string
+                  examples:
+                  - hhh
+                logo:
+                  type: string
+                  examples:
+                  - fff
+              contentMediaType: application/x-www-form-urlencoded
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /profile/getprofiles:
+    get:
+      tags:
+      - Profile
+      summary: Get Profiles
+      operationId: GetProfiles
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /profile/getprofile:
+    get:
+      tags:
+      - Profile
+      summary: Get Profile
+      operationId: GetProfile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /profile/getprofileByUser:
+    get:
+      tags:
+      - Profile
+      summary: Get Profiles By User
+      operationId: GetProfilesByUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /profile/update:
+    patch:
+      tags:
+      - Profile
+      summary: Update Profile
+      operationId: UpdateProfile
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - name
+              - email
+              - phoneNumber
+              - businessName
+              - contactAddress
+              - logo
+              type: object
+              properties:
+                name:
+                  type: string
+                  examples:
+                  - baki
+                email:
+                  type: string
+                  examples:
+                  - bakisodiq@gmail.com
+                phoneNumber:
+                  type: integer
+                  contentEncoding: int32
+                  examples:
+                  - 8888
+                businessName:
+                  type: string
+                  examples:
+                  - ggg
+                contactAddress:
+                  type: string
+                  examples:
+                  - hhh
+                logo:
+                  type: string
+                  examples:
+                  - fff
+              contentMediaType: application/x-www-form-urlencoded
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /profile/delete:
+    delete:
+      tags:
+      - Profile
+      summary: Delete Profile
+      operationId: DeleteProfile
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - name
+              - email
+              - phoneNumber
+              - businessName
+              - contactAddress
+              - logo
+              type: object
+              properties:
+                name:
+                  type: string
+                  examples:
+                  - baki
+                email:
+                  type: string
+                  examples:
+                  - bakisodiq@gmail.com
+                phoneNumber:
+                  type: integer
+                  contentEncoding: int32
+                  examples:
+                  - 8888
+                businessName:
+                  type: string
+                  examples:
+                  - ggg
+                contactAddress:
+                  type: string
+                  examples:
+                  - hhh
+                logo:
+                  type: string
+                  examples:
+                  - fff
+              contentMediaType: application/x-www-form-urlencoded
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+  /contacts:
+    post:
+      tags:
+      - Contact
+      summary: Create Contact
+      operationId: CreateContact
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - subject
+              - message
+              type: object
+              properties:
+                subject:
+                  type: string
+                  examples:
+                  - hh
+                message:
+                  type: string
+                  examples:
+                  - hh
+              contentMediaType: application/x-www-form-urlencoded
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      servers:
+      - url: http://example.com
+        variables: {}
+    parameters: []
+components:
+  schemas:
+    sendAutomatedEmailRequest:
+      title: sendAutomatedEmailRequest
+      required:
+      - subject
+      - send_to
+      - reply_to
+      - template
+      - url
+      type: object
+      properties:
+        subject:
+          type: string
+        send_to:
+          type: string
+        reply_to:
+          type: string
+        template:
+          type: string
+        url:
+          type: string
+      examples:
+      - subject: hello
+        send_to: bakisodiq@gmail.com
+        reply_to: noreply@nestlypay.com
+        template: testEmail
+        url: testemail
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      examples:
+      - email: ibitoyecomfort209@gmail.com
+        password: Atom@124
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      examples:
+      - name: kofo
+        email: ibitoyecomfort209@gmail.com
+        password: Atom@124
+    sendVerificationEmailRequest:
+      title: sendVerificationEmailRequest
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+      examples:
+      - email: ibitoyecomfort209@gmail.com
+    VerifyTokenRequest:
+      title: VerifyTokenRequest
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+      examples:
+      - email: ibitoyecomfort209@gmail.com
+    ResetPasswordRequest:
+      title: ResetPasswordRequest
+      required:
+      - password
+      type: object
+      properties:
+        password:
+          type: string
+      examples:
+      - password: Atom@124
+    ForgotPasswordRequest:
+      title: ForgotPasswordRequest
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+      examples:
+      - email: bakisodiq@gmail.com
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      examples:
+      - name: kofo1
+    ChangePasswordRequest:
+      title: ChangePasswordRequest
+      required:
+      - oldPassword
+      - Password
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        Password:
+          type: string
+      examples:
+      - oldPassword: Atom@124
+        Password: Atom@1245
+    CreatePDFRequest:
+      title: CreatePDFRequest
+      required:
+      - name
+      - address
+      - phone
+      - email
+      - dueDate
+      - date
+      - id
+      - note
+      - subTotal
+      - total
+      - type
+      - vat
+      - items
+      - status
+      - totalAmountReceived
+      - balanceDue
+      - company
+      - businessDetails
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        dueDate:
+          type: string
+        date:
+          type: string
+        id:
+          type: string
+        note:
+          type: string
+        subTotal:
+          type: string
+        total:
+          type: string
+        type:
+          type: string
+        vat:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+        status:
+          type: string
+        totalAmountReceived:
+          type: string
+        balanceDue:
+          type: string
+        company:
+          type: string
+        businessDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusinessDetail'
+          description: ''
+      examples:
+      - name: baki
+        address: hello
+        phone: '+2348166321899'
+        email: bakisodiq@gmail.com
+        dueDate: 2022-12-23T21:17:11.760Z
+        date: 2022-12-23T21:17:11.760Z
+        id: '0001'
+        note: Please Make Payment to my account details below
+        subTotal: '124.6'
+        total: '100.5'
+        type: Invoice
+        vat: '3'
+        items:
+        - itemName: Gold
+          unitPrice: '23.3'
+          quantity: '2'
+          discount: '0.5'
+        status: unpaid
+        totalAmountReceived: '455.6'
+        balanceDue: '23.9'
+        company: GIG
+        businessDetails:
+        - businessName: baki
+          address: hello
+          phone: '+2348166321899'
+          email: bakisodiq@gmail.com
+    Item:
+      title: Item
+      required:
+      - itemName
+      - unitPrice
+      - quantity
+      - discount
+      type: object
+      properties:
+        itemName:
+          type: string
+        unitPrice:
+          type: string
+        quantity:
+          type: string
+        discount:
+          type: string
+      examples:
+      - itemName: Gold
+        unitPrice: '23.3'
+        quantity: '2'
+        discount: '0.5'
+    BusinessDetail:
+      title: BusinessDetail
+      required:
+      - businessName
+      - address
+      - phone
+      - email
+      type: object
+      properties:
+        businessName:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+      examples:
+      - businessName: baki
+        address: hello
+        phone: '+2348166321899'
+        email: bakisodiq@gmail.com
+    CreateInvoiceRequest:
+      title: CreateInvoiceRequest
+      required:
+      - dueDate
+      - currency
+      - items
+      - rates
+      - vat
+      - total
+      - subTotal
+      - notes
+      - status
+      - invoiceNumber
+      - type
+      - creator
+      - totalAmountReceived
+      - client
+      - paymentRecords
+      type: object
+      properties:
+        dueDate:
+          type: string
+        currency:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+        rates:
+          type: string
+        vat:
+          type: string
+        total:
+          type: string
+        subTotal:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+        invoiceNumber:
+          type: string
+        type:
+          type: string
+        creator:
+          type: array
+          items:
+            type: string
+          description: ''
+        totalAmountReceived:
+          type: string
+        client:
+          allOf:
+          - $ref: '#/components/schemas/Client'
+          - {}
+        paymentRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRecord'
+          description: ''
+      examples:
+      - dueDate: 2022-12-23T21:17:11.760Z
+        currency: USD
+        items:
+        - itemName: Silver
+          unitPrice: '23.3'
+          quantity: '2'
+          discount: '0.5'
+        rates: '0.01'
+        vat: '3'
+        total: '100.5'
+        subTotal: '124.6'
+        notes: Hello
+        status: unpaid
+        invoiceNumber: '1236'
+        type: fff
+        creator:
+        - String
+        totalAmountReceived: '455.6'
+        client:
+          name: baki
+          email: bakisodiq@gmail.com
+          phone: '3344'
+          address: hello
+        paymentRecords:
+        - amountPaid: '445'
+          datePaid: 2022-12-23T21:17:11.760Z
+          paymentMethod: transfer
+          note: ffff
+          paidBy: rrtrt
+    Client:
+      title: Client
+      required:
+      - name
+      - email
+      - phone
+      - address
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        address:
+          type: string
+      examples:
+      - name: baki
+        email: bakisodiq@gmail.com
+        phone: '3344'
+        address: hello
+    PaymentRecord:
+      title: PaymentRecord
+      required:
+      - amountPaid
+      - datePaid
+      - paymentMethod
+      - note
+      - paidBy
+      type: object
+      properties:
+        amountPaid:
+          type: string
+        datePaid:
+          type: string
+        paymentMethod:
+          type: string
+        note:
+          type: string
+        paidBy:
+          type: string
+      examples:
+      - amountPaid: '445'
+        datePaid: 2022-12-23T21:17:11.760Z
+        paymentMethod: transfer
+        note: ffff
+        paidBy: rrtrt
+    UpdateInvoiceRequest:
+      title: UpdateInvoiceRequest
+      required:
+      - dueDate
+      - currency
+      - items
+      - rates
+      - vat
+      - total
+      - subTotal
+      - notes
+      - status
+      - invoiceNumber
+      - type
+      - creator
+      - totalAmountReceived
+      - client
+      - paymentRecords
+      type: object
+      properties:
+        dueDate:
+          type: string
+        currency:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+        rates:
+          type: string
+        vat:
+          type: string
+        total:
+          type: string
+        subTotal:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+        invoiceNumber:
+          type: string
+        type:
+          type: string
+        creator:
+          type: array
+          items:
+            type: string
+          description: ''
+        totalAmountReceived:
+          type: string
+        client:
+          allOf:
+          - $ref: '#/components/schemas/Client'
+          - {}
+        paymentRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRecord'
+          description: ''
+      examples:
+      - dueDate: 2022-12-23T21:17:11.760Z
+        currency: USD
+        items:
+        - itemName: Silver
+          unitPrice: '23.3'
+          quantity: '2'
+          discount: '0.5'
+        rates: '0.01'
+        vat: '3'
+        total: '100.5'
+        subTotal: '124.6'
+        notes: Hello
+        status: unpaid
+        invoiceNumber: '1236'
+        type: fff
+        creator:
+        - String
+        totalAmountReceived: '455.6'
+        client:
+          name: baki
+          email: bakisodiq@gmail.com
+          phone: '3344'
+          address: hello
+        paymentRecords:
+        - amountPaid: '445'
+          datePaid: 2022-12-23T21:17:11.760Z
+          paymentMethod: transfer
+          note: ffff
+          paidBy: rrtrt
+    DeleteInvoiceRequest:
+      title: DeleteInvoiceRequest
+      required:
+      - dueDate
+      - currency
+      - items
+      - rates
+      - vat
+      - total
+      - subTotal
+      - notes
+      - status
+      - invoiceNumber
+      - type
+      - creator
+      - totalAmountReceived
+      - client
+      - paymentRecords
+      type: object
+      properties:
+        dueDate:
+          type: string
+        currency:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+        rates:
+          type: string
+        vat:
+          type: string
+        total:
+          type: string
+        subTotal:
+          type: string
+        notes:
+          type: string
+        status:
+          type: string
+        invoiceNumber:
+          type: string
+        type:
+          type: string
+        creator:
+          type: array
+          items:
+            type: string
+          description: ''
+        totalAmountReceived:
+          type: string
+        client:
+          allOf:
+          - $ref: '#/components/schemas/Client'
+          - {}
+        paymentRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRecord'
+          description: ''
+      examples:
+      - dueDate: 2022-12-23T21:17:11.760Z
+        currency: USD
+        items:
+        - itemName: Silver
+          unitPrice: '23.3'
+          quantity: '2'
+          discount: '0.5'
+        rates: '0.01'
+        vat: '3'
+        total: '100.5'
+        subTotal: '124.6'
+        notes: Hello
+        status: unpaid
+        invoiceNumber: '1236'
+        type: fff
+        creator:
+        - String
+        totalAmountReceived: '455.6'
+        client:
+          name: baki
+          email: bakisodiq@gmail.com
+          phone: '3344'
+          address: hello
+        paymentRecords:
+        - amountPaid: '445'
+          datePaid: 2022-12-23T21:17:11.760Z
+          paymentMethod: transfer
+          note: ffff
+          paidBy: rrtrt
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Email
+- name: Authentication
+- name: Create PDF
+- name: Invoice
+- name: Client
+- name: Business
+- name: Profile
+- name: Contact
