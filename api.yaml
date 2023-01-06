@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: Nestlypay API
   contact:
@@ -7,7 +7,7 @@ info:
   version: '1.0'
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
-- url: https://nestlipay-data.onrender.com/api/v1
+- url: https://nestlipay-data.onrender.com
   variables: {}
 - url: http://example.com
   variables: {}
@@ -27,10 +27,10 @@ paths:
               allOf:
               - $ref: '#/components/schemas/sendAutomatedEmailRequest'
               - examples:
-                - subject: hello
-                  send_to: bakisodiq@gmail.com
-                  reply_to: noreply@nestlypay.com
-                  template: testEmail
+                - subject: 
+                  send_to:
+                  reply_to:
+                  template:
                   url: testemail
               contentMediaType: application/json
             example:
@@ -94,7 +94,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://nestlipay-data.onrender.com/api/v1
+      - url: https://nestlipay-data.onrender.com
         variables: {}
     parameters: []
   /users/auth/login:
