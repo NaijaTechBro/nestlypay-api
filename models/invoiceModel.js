@@ -46,7 +46,7 @@ module.exports = mongoose.model('Invoice', InvoiceSchema)
 // 	"name": "baki", 
 // 	"address": "hello",
 // 	"phone": "+2348166321899",
-// 	"email": "bakisodiq@gmail.com", 
+// 	"email": "test@gmail.com", 
 // 	"dueDate": "2022-12-23T21:17:11.760Z",
 // 	"date": "2022-12-23T21:17:11.760Z",
 // 	"id": "0001",
@@ -71,7 +71,7 @@ module.exports = mongoose.model('Invoice', InvoiceSchema)
 // 		"name": "baki", 
 // 		"address": "hello",
 // 	"phone": "+2348166321899",
-// 	"email": "bakisodiq@gmail.com"
+// 	"email": "test@gmail.com"
 // 	}    
 // }
 
