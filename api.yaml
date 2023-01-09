@@ -95,11 +95,11 @@ paths:
               allOf:
               - $ref: '#/components/schemas/LoginUserRequest'
               - examples:
-                - email: ibitoyecomfort209@gmail.com
+                - email: test@gmail.com
                   password: Atom@124
               contentMediaType: application/json
             example:
-              email: ibitoyecomfort209@gmail.com
+              email: test@gmail.com
               password: Atom@124
         required: true
       responses:
@@ -135,14 +135,14 @@ paths:
               allOf:
               - $ref: '#/components/schemas/RegisterUserRequest'
               - examples:
-                - name: kofo
-                  email: ibitoyecomfort209@gmail.com
-                  password: Atom@124
+                - name: User
+                  email: test@gmail.com
+                  password: test@124
               contentMediaType: application/json
             example:
-              name: kofo
-              email: ibitoyecomfort209@gmail.com
-              password: Atom@124
+              name: User
+              email: test@gmail.com
+              password: test@124
         required: true
       responses:
         '200':
@@ -165,10 +165,10 @@ paths:
               allOf:
               - $ref: '#/components/schemas/sendVerificationEmailRequest'
               - examples:
-                - email: ibitoyecomfort209@gmail.com
+                - email: test@gmail.com
               contentMediaType: application/json
             example:
-              email: ibitoyecomfort209@gmail.com
+              email: test@gmail.com
         required: true
       responses:
         '200':
@@ -190,10 +190,10 @@ paths:
               allOf:
               - $ref: '#/components/schemas/VerifyTokenRequest'
               - examples:
-                - email: ibitoyecomfort209@gmail.com
+                - email: test@gmail.com
               contentMediaType: application/json
             example:
-              email: ibitoyecomfort209@gmail.com
+              email: test@gmail.com
         required: true
       responses:
         '200':
@@ -290,10 +290,10 @@ paths:
               allOf:
               - $ref: '#/components/schemas/UpdateUserRequest'
               - examples:
-                - name: kofo1
+                - name: User
               contentMediaType: application/json
             example:
-              name: kofo1
+              name: User
         required: true
       responses:
         '200':
@@ -1192,7 +1192,7 @@ components:
         password:
           type: string
       examples:
-      - email: ibitoyecomfort209@gmail.com
+      - email: test@gmail.com
         password: Atom@124
     RegisterUserRequest:
       title: RegisterUserRequest
@@ -1209,8 +1209,8 @@ components:
         password:
           type: string
       examples:
-      - name: kofo
-        email: ibitoyecomfort209@gmail.com
+      - name: User
+        email: test@gmail.com
         password: Atom@124
     sendVerificationEmailRequest:
       title: sendVerificationEmailRequest
@@ -1221,7 +1221,7 @@ components:
         email:
           type: string
       examples:
-      - email: ibitoyecomfort209@gmail.com
+      - email: test@gmail.com
     VerifyTokenRequest:
       title: VerifyTokenRequest
       required:
@@ -1231,7 +1231,7 @@ components:
         email:
           type: string
       examples:
-      - email: ibitoyecomfort209@gmail.com
+      - email: test@gmail.com
     ResetPasswordRequest:
       title: ResetPasswordRequest
       required:
@@ -1261,7 +1261,7 @@ components:
         name:
           type: string
       examples:
-      - name: kofo1
+      - name: test1
     ChangePasswordRequest:
       title: ChangePasswordRequest
       required:
