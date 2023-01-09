@@ -11,7 +11,7 @@ servers:
 - url: https://nestlipay-data.onrender.com
   variables: {}
 paths:
-  /users/sendAutomatedEmail:
+  /api/v1/users/sendAutomatedEmail:
     post:
       tags:
       - Email
@@ -44,7 +44,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /users/sendLoginCode:
+  /api/v1/users/sendLoginCode:
     post:
       tags:
       - Email
@@ -56,7 +56,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /users/loginWithCode:
+  /api/v1/users/loginWithCode:
     post:
       tags:
       - Email
@@ -80,7 +80,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /users/auth/login:
+  /api/v1/users/auth/login:
     post:
       tags:
       - Authentication
