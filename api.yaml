@@ -897,7 +897,7 @@ paths:
       - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
-  /profile/create:
+  /api/v1/profile/create:
     post:
       tags:
       - Profile
@@ -954,7 +954,7 @@ paths:
       - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
-  /profile/getprofiles:
+  /api/v1/profile/getprofiles:
     get:
       tags:
       - Profile
@@ -970,7 +970,7 @@ paths:
       - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
-  /profile/getprofile:
+  /api/v1/profile/getprofile:
     get:
       tags:
       - Profile
@@ -986,7 +986,7 @@ paths:
       - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
-  /profile/getprofileByUser:
+  /api/v1/profile/getprofileByUser:
     get:
       tags:
       - Profile
@@ -1002,7 +1002,7 @@ paths:
       - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
-  /profile/update:
+  /api/v1/profile/update:
     patch:
       tags:
       - Profile
@@ -1059,7 +1059,7 @@ paths:
       - url: http://localhost:7890/api/v1
         variables: {}
     parameters: []
-  /profile/delete:
+  /api/v1/profile/delete:
     delete:
       tags:
       - Profile
