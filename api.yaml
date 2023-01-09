@@ -426,7 +426,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/create:
+  /api/v1/invoice/create:
     post:
       tags:
       - Invoice
@@ -507,7 +507,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/getInvoice:
+  /api/v1/invoice/getInvoice:
     get:
       tags:
       - Invoice
@@ -519,7 +519,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/getInvoices:
+  /api/v1/invoice/getInvoices:
     get:
       tags:
       - Invoice
@@ -531,7 +531,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/getInvoicesByUser:
+  /api/v1/invoice/getInvoicesByUser:
     get:
       tags:
       - Invoice
@@ -543,7 +543,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/gettotalCount:
+  /api/v1/invoice/gettotalCount:
     get:
       tags:
       - Invoice
@@ -555,7 +555,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/update:
+  /api/v1/invoice/update:
     put:
       tags:
       - Invoice
@@ -636,7 +636,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /invoice/delete:
+  /api/v1/invoice/delete:
     delete:
       tags:
       - Invoice
