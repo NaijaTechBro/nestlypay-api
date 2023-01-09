@@ -717,7 +717,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /client/create:
+  /api/v1/client/create:
     post:
       tags:
       - Client
@@ -729,7 +729,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /client/update:
+  /api/v1/client/update:
     patch:
       tags:
       - Client
@@ -741,7 +741,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /client/delete:
+  /api/v1/client/delete:
     delete:
       tags:
       - Client
@@ -753,7 +753,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /client/getClient:
+  /api/v1/client/getClient:
     get:
       tags:
       - Client
@@ -765,7 +765,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /client/gettotalClients:
+  /api/v1/client/gettotalClients:
     get:
       tags:
       - Client
@@ -777,7 +777,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /client/getClientByUser:
+  /api/v1/client/getClientByUser:
     get:
       tags:
       - Client
