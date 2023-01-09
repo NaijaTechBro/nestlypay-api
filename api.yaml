@@ -9,6 +9,7 @@ info:
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
 - url: http://localhost:7890/api/v1
+- url: https://nestlipay-data.onrender.com
   variables: {}
 paths:
   /users/sendAutomatedEmail:
