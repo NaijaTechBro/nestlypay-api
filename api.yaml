@@ -44,7 +44,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /api/v1/users/sendLoginCode:
+  /api/v1/users/sendLoginCode/:email:
     post:
       tags:
       - Email
@@ -56,7 +56,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /api/v1/users/loginWithCode:
+  /api/v1/users/loginWithCode/:email:
     post:
       tags:
       - Email
@@ -175,7 +175,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /api/v1/auth/VerifyUser:
+  /api/v1/auth/VerifyUser/:verificationToken:
     patch:
       tags:
       - Authentication
@@ -223,7 +223,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /api/v1/users/resetPassword:
+  /api/v1/users/resetPassword/:
     patch:
       tags:
       - Authentication
