@@ -6,7 +6,6 @@ info:
     name: Nestlypay Developer Team
     email: hello@nestlypay.com
   version: '1.0'
-jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
 - url: http://localhost:7890/api/v1
 - url: https://nestlipay-data.onrender.com
