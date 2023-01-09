@@ -7,7 +7,7 @@ info:
     email: hello@nestlypay.com
   version: '1.0'
 servers:
-- url: http://localhost:7890/api/v1
+- url: http://localhost:7890
 - url: https://nestlipay-data.onrender.com
   variables: {}
 paths:
@@ -845,10 +845,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/business/getBusiness:
     get:
       tags:
@@ -861,10 +857,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/business/gettotalBusinesses:
     get:
       tags:
@@ -877,10 +869,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/business/getBusinessByUser:
     get:
       tags:
@@ -893,10 +881,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/profile/create:
     post:
       tags:
@@ -950,10 +934,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/profile/getprofiles:
     get:
       tags:
@@ -966,10 +946,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/profile/getprofile:
     get:
       tags:
@@ -982,10 +958,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/profile/getprofileByUser:
     get:
       tags:
@@ -998,10 +970,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/profile/update:
     patch:
       tags:
@@ -1055,10 +1023,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
   /api/v1/profile/delete:
     delete:
       tags:
@@ -1112,11 +1076,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
-  /contacts:
+  /api/v1/contacts:
     post:
       tags:
       - Contact
@@ -1148,10 +1108,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-      servers:
-      - url: http://localhost:7890/api/v1
-        variables: {}
-    parameters: []
 components:
   schemas:
     sendAutomatedEmailRequest:
