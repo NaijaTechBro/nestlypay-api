@@ -61,12 +61,12 @@ const registerUser = asyncHandler(async (req, res) => {
     secure: true,
   });
 
-  
-   //send welcome mail
+
+  //send welcome mail
   const subject = "Welcome to Nestlypay";
   const send_to = email;
-  const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@nestlypay.com";
+  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const reply_to = "no-reply@nestlypay.com";
   const fullname = user.name;
   const template = "welcome";
 
@@ -80,8 +80,8 @@ const registerUser = asyncHandler(async (req, res) => {
       fullname,
     );
     res
-    .status(200)
-    .json({ success: true, message: "Welcome Email Sent"});
+      .status(200)
+      .json({ success: true, message: "Welcome Email Sent" });
   } catch (error) {
     res.status(500);
     throw new Error("Email not sent, please try again");
@@ -218,8 +218,8 @@ const sendLoginCode = asyncHandler(async (req, res) => {
 
   const subject = "Login Access Code - Nestlypay";
   const send_to = email;
-  const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@nestlypay.com";
+  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const reply_to = "no-reply@nestlypay.com";
   const template = "accessToken";
   const name = user.name;
   const link = decryptedLoginCode;
@@ -363,8 +363,8 @@ const sendVerificationEmail = asyncHandler(async (req, res) => {
   //   `;
   const subject = "Verify Your Account - Nestlypay";
   const send_to = user.email;
-  const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@nestlypay.com";
+  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const reply_to = "no-reply@nestlypay.com";
   const template = "email";
   const name = user.name;
   const link = verificationUrl;
@@ -602,12 +602,12 @@ const changePassword = asyncHandler(async (req, res) => {
   // send Changepassword mail
   const subject = "Your Password was Changed";
   const send_to = user.email;
-  const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@nestlypay.com";
+  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const reply_to = "no-reply@nestlypay.com";
   const template = "changePassword";
   const name = user.name;
 
-  
+
   try {
     await sendEmail(
       subject,
@@ -618,15 +618,15 @@ const changePassword = asyncHandler(async (req, res) => {
       name,
     );
     res
-    .status(200)
-    .json({ success: true, message: "Change Password mail Sent"});
+      .status(200)
+      .json({ success: true, message: "Change Password mail Sent" });
   } catch (error) {
     res.status(500);
     throw new Error("Email not sent, please try again");
   }
 
 
-  
+
   // // Construct Reset Url
   // const resetUrl = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
   // console.log(resetUrl);
@@ -701,8 +701,8 @@ const forgotPassword = asyncHandler(async (req, res) => {
   // Reset Email
   const subject = "Password Reset Request";
   const send_to = user.email;
-  const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@nestlypay.com";
+  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const reply_to = "no-reply@nestlypay.com";
   const template = "forgotPassword";
   const name = user.name;
   const link = resetUrl;
