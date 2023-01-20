@@ -13,8 +13,6 @@ const Cryptr = require("cryptr");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const cryptr = new Cryptr(process.env.CRYPTR_KEY);
 
-
-
 // Register User
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -61,11 +59,10 @@ const registerUser = asyncHandler(async (req, res) => {
     secure: true,
   });
 
-
   //send welcome mail
   const subject = "Welcome to Nestlypay";
   const send_to = email;
-  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const sent_from = "Nestlypay <hello@nestlypay.com>";
   const reply_to = "no-reply@nestlypay.com";
   const fullname = user.name;
   const template = "welcome";
@@ -218,7 +215,7 @@ const sendLoginCode = asyncHandler(async (req, res) => {
 
   const subject = "Login Access Code - Nestlypay";
   const send_to = email;
-  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const sent_from = "Nestlypay <hello@nestlypay.com>";
   const reply_to = "no-reply@nestlypay.com";
   const template = "accessToken";
   const name = user.name;
@@ -363,7 +360,7 @@ const sendVerificationEmail = asyncHandler(async (req, res) => {
   //   `;
   const subject = "Verify Your Account - Nestlypay";
   const send_to = user.email;
-  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const sent_from = "Nestlypay <hello@nestlypay.com>";
   const reply_to = "no-reply@nestlypay.com";
   const template = "email";
   const name = user.name;
@@ -602,7 +599,7 @@ const changePassword = asyncHandler(async (req, res) => {
   // send Changepassword mail
   const subject = "Your Password was Changed";
   const send_to = user.email;
-  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const sent_from = "Nestlypay <hello@nestlypay.com>";
   const reply_to = "no-reply@nestlypay.com";
   const template = "changePassword";
   const name = user.name;
@@ -701,7 +698,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
   // Reset Email
   const subject = "Password Reset Request";
   const send_to = user.email;
-  const sent_from = "Nestlypay <hello@nestlypay.co>";
+  const sent_from = "Nestlypay <hello@nestlypay.com>";
   const reply_to = "no-reply@nestlypay.com";
   const template = "forgotPassword";
   const name = user.name;
