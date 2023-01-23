@@ -28,3 +28,9 @@ const decrypt = (text) => {
     return decipher.final("utf8");
 };
 
+module.exports = {
+    generateToken,
+    hashToken,
+    encrypt,
+    decrypt,
+};
