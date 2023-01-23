@@ -25,6 +25,18 @@ const sendEmail = async (
     },
     });
 
+    const handlebarOptions = {
+    viewEngine: {
+        extName: ".handlebars",
+        partialsDir: path.resolve("./email"),
+        defaultLayout: false,
+    },
+    viewPath: path.resolve("./email"),
+    extName: ".handlebars",
+    };
+
+    transporter.use("compile", hbs(handlebarOptions));
+
   // Option for sending email
     const options = {
     from: sent_from,
