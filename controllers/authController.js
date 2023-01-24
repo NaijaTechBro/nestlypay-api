@@ -188,124 +188,124 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// const sendLoginCode = asyncHandler(async (req, res) => {
-//   // res.send("Login Token");
-//   const { email } = req.params;
-//   console.log(email);
-//   const user = await User.findOne({ email });
+const sendLoginCode = asyncHandler(async (req, res) => {
+  res.send("Login Token");
+  const { email } = req.params;
+  console.log(email);
+  const user = await User.findOne({ email });
 
-//   // Check if user doesn't exists
-//   if (!user) {
-//     res.status(404);
-//     throw new Error("User not found");
-//   }
+  // Check if user doesn't exists
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
 
-//   // Find Access Token in DB
-//   let userToken = await Token.findOne({ userId: user._id });
+  // Find Access Token in DB
+  let userToken = await Token.findOne({ userId: user._id });
 
-//   if (!userToken) {
-//     res.status(500);
-//     throw new Error("Invalid or Expired token, Login again");
-//   }
+  if (!userToken) {
+    res.status(500);
+    throw new Error("Invalid or Expired token, Login again");
+  }
 
-//   // get the login code
-//   const loginCode = userToken.loginToken;
-//   const decryptedLoginCode = cryptr.decrypt(loginCode);
-//   console.log(loginCode);
+  // get the login code
+  const loginCode = userToken.loginToken;
+  const decryptedLoginCode = cryptr.decrypt(loginCode);
+  console.log(loginCode);
 
-//   const subject = "Login Access Code - Nestlypay";
-//   const send_to = email;
-//   const sent_from = "Nestlypay <hello@nestlypay.com>";
-//   const reply_to = "no-reply@nestlypay.com";
-//   const template = "accessToken";
-//   const name = user.name;
-//   const link = decryptedLoginCode;
+  const subject = "Login Access Code - Nestlypay";
+  const send_to = email;
+  const sent_from = "Nestlypay <hello@nestlypay.com>";
+  const reply_to = "no-reply@nestlypay.com";
+  const template = "accessToken";
+  const name = user.name;
+  const link = decryptedLoginCode;
 
-//   try {
-//     await sendEmail(
-//       subject,
-//       send_to,
-//       sent_from,
-//       reply_to,
-//       template,
-//       name,
-//       link
-//     );
-//     res
-//       .status(200)
-//       .json({ success: true, message: "Access Code Sent to your email." });
-//   } catch (error) {
-//     res.status(500);
-//     throw new Error("Email not sent, please try again");
-//   }
-// });
+  try {
+    await sendEmail(
+      subject,
+      send_to,
+      sent_from,
+      reply_to,
+      template,
+      name,
+      link
+    );
+    res
+      .status(200)
+      .json({ success: true, message: "Access Code Sent to your email." });
+  } catch (error) {
+    res.status(500);
+    throw new Error("Email not sent, please try again");
+  }
+});
 
 
 
-// // Login with code
-// const loginWithCode = asyncHandler(async (req, res) => {
-//   const { email } = req.params;
-//   const { loginCode } = req.body;
-//   console.log(email);
-//   console.log(loginCode);
+// Login with code
+const loginWithCode = asyncHandler(async (req, res) => {
+  const { email } = req.params;
+  const { loginCode } = req.body;
+  console.log(email);
+  console.log(loginCode);
 
-//   const user = await User.findOne({ email });
+  const user = await User.findOne({ email });
 
-//   // Check if user doesn't exists
-//   if (!user) {
-//     res.status(404);
-//     throw new Error("User not found");
-//   }
+  // Check if user doesn't exists
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
 
-//   // Find Token in DB
-//   const userToken = await Token.findOne({
-//     userId: user.id,
-//     expiresAt: { $gt: Date.now() },
-//   });
+  // Find Token in DB
+  const userToken = await Token.findOne({
+    userId: user.id,
+    expiresAt: { $gt: Date.now() },
+  });
 
-//   if (!userToken) {
-//     res.status(404);
-//     throw new Error("Invalid or Expired Code, please login again");
-//   }
+  if (!userToken) {
+    res.status(404);
+    throw new Error("Invalid or Expired Code, please login again");
+  }
 
-//   const decryptedLoginCode = cryptr.decrypt(userToken.loginToken);
+  const decryptedLoginCode = cryptr.decrypt(userToken.loginToken);
 
-//   // Log user in
-//   if (loginCode !== decryptedLoginCode) {
-//     res.status(400);
-//     throw new Error("Incorrect login code, please try again");
-//   } else {
-//     // Register the userAgent
-//     const ua = parser(req.headers["user-agent"]);
-//     const thisUserAgent = ua.ua;
-//     user.userAgent.push(thisUserAgent);
-//     await user.save();
-//     //   Generate Token
-//     const token = generateToken(user._id);
+  // Log user in
+  if (loginCode !== decryptedLoginCode) {
+    res.status(400);
+    throw new Error("Incorrect login code, please try again");
+  } else {
+    // Register the userAgent
+    const ua = parser(req.headers["user-agent"]);
+    const thisUserAgent = ua.ua;
+    user.userAgent.push(thisUserAgent);
+    await user.save();
+    //   Generate Token
+    const token = generateToken(user._id);
 
-//     // Send HTTP-only cookie
-//     res.cookie("token", token, {
-//       path: "/",
-//       httpOnly: true,
-//       expires: new Date(Date.now() + 1000 * 86400), // 1 day
-//       sameSite: "none",
-//       secure: true,
-//     });
+    // Send HTTP-only cookie
+    res.cookie("token", token, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 86400), // 1 day
+      sameSite: "none",
+      secure: true,
+    });
 
-//     const { _id, name, email, photo, phone, bio, isVerified, role } = user;
-//     res.status(200).json({
-//       _id,
-//       name,
-//       email,
-//       photo,
-//       phone,
-//       bio,
-//       isVerified,
-//       role,
-//       token,
-//     });
-//   }
-// });
+    const { _id, name, email, photo, phone, bio, isVerified, role } = user;
+    res.status(200).json({
+      _id,
+      name,
+      email,
+      photo,
+      phone,
+      bio,
+      isVerified,
+      role,
+      token,
+    });
+  }
+});
 
 
 
@@ -814,6 +814,6 @@ module.exports = {
   resetPassword,
   sendAutomatedEmail,
   loginWithGoogle,
-  // sendLoginCode,
-  // loginWithCode,
+  sendLoginCode,
+  loginWithCode,
 };

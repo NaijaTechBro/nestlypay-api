@@ -13,8 +13,8 @@ const {
     verifyUser,
     sendAutomatedEmail,
     loginWithGoogle,
-    // sendLoginCode,
-    // loginWithCode,
+    sendLoginCode,
+    loginWithCode,
 } = require("../controllers/authController");
 const {
     isAuthenticatedUser,
@@ -28,8 +28,8 @@ router.post("/users/auth/login", loginLimiter, loginUser);
 router.get("/logout", logout);
 
 router.post("/users/sendAutomatedEmail", isAuthenticatedUser, sendAutomatedEmail);
-// router.post("/users/sendLoginCode/:email", sendLoginCode);
-// router.post("/users/loginWithCode/:email", loginWithCode);
+router.post("/users/sendLoginCode/:email", sendLoginCode);
+router.post("/users/loginWithCode/:email", loginWithCode);
 
 router.get("/users/auth/loginStatus", loginStatus);
 router.patch("/users/updateUser", isAuthenticatedUser, updateUser);
