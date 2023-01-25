@@ -44,36 +44,36 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  # /api/v1/users/sendLoginCode/:email:
-  #   post:
-  #     tags:
-  #     - Email
-  #     summary: sendLoginCode
-  #     operationId: sendLoginCode
-  #     parameters: []
-  #     responses:
-  #       '200':
-  #         description: ''
-  #         headers: {}
-  #     deprecated: false
-  # /api/v1/users/loginWithCode/:email:
-  #   post:
-  #     tags:
-  #     - Email
-  #     summary: loginWithCode
-  #     operationId: loginWithCode
-  #     parameters:
-  #       - name: email
-  #         in: path
-  #         description: User Email
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: ''
-  #         headers: {}
-  #     deprecated: false
+  /api/v1/users/sendLoginCode/:email:
+    post:
+      tags:
+      - Email
+      summary: sendLoginCode
+      operationId: sendLoginCode
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /api/v1/users/loginWithCode/:email:
+    post:
+      tags:
+      - Email
+      summary: loginWithCode
+      operationId: loginWithCode
+      parameters:
+        - name: email
+          in: path
+          description: User Email
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
   /:
     get:
       tags:
