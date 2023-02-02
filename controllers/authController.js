@@ -150,7 +150,7 @@ const loginUser = asyncHandler(async (req, res) => {
       userId: user._id,
       loginToken: encryptedLoginCode,
       createdAt: Date.now(),
-      expiresAt: Date.now() + 60 * (60 * 1000), // Thirty minutes
+      expiresAt: Date.now() + 60 * (60 * 1000), // Thirty minutes  1hr = 60 * (60 * 1000)
     }).save();
 
     res.status(400);
@@ -673,7 +673,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     await token.deleteOne();
   }
 
-  // Create Reste Token
+  // Create Reset Token
   let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
   console.log(resetToken);
 
