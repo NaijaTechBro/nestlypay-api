@@ -5,7 +5,7 @@ const express = require('express');
 // Security
 const helmet = require('helmet');
 const cors = require('cors');
-// const whitelist = require('./config/whiteList')
+const whitelist = require('./config/whiteList')
 const xss = require('xss-clean');
 
 // Swagger UI
@@ -63,9 +63,7 @@ connectDB()
 app.use(logger)
 
 // Cross Origin Resource Sharing
-app.use(cors({
-    origin:"https://nestlypay.vercel.app"
-}))
+app.use(cors(whitelist));
 
 app.use(express.json({ limit: "30mb", extended: true}))
 app.use(helmet());
