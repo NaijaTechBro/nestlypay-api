@@ -5,6 +5,7 @@ const express = require('express');
 // Security
 const helmet = require('helmet');
 const cors = require('cors');
+// const whitelist = require('./config/whiteList')
 const xss = require('xss-clean');
 
 // Swagger UI
@@ -30,6 +31,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 
 
+// const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/dbConn');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || PORT
@@ -62,7 +64,7 @@ connectDB()
 app.use(logger)
 
 // Cross Origin Resource Sharing
-app.use(cors())
+app.use(cors(['http://nestlypay.vercel.app', 'http://localhost:3001']))
 
 app.use(express.json({ limit: "30mb", extended: true}))
 app.use(helmet());
