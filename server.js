@@ -5,7 +5,6 @@ const express = require('express');
 // Security
 const helmet = require('helmet');
 const cors = require('cors');
-const whitelist = require('./config/whiteList')
 const xss = require('xss-clean');
 
 // Swagger UI
@@ -64,13 +63,7 @@ connectDB()
 app.use(logger)
 
 // Cross Origin Resource Sharing
-app.use(cors(whitelist))
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(cors())
 
 app.use(express.json({ limit: "30mb", extended: true}))
 app.use(helmet());
